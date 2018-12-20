@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: 2018-12-20T10:20:43Z
+  labels:
+    run: ntpforhimself
+  name: ntpforhimself
+  namespace: default
+  resourceVersion: "12187986"
+  selfLink: /api/v1/namespaces/default/services/ntpforhimself
+  uid: e83fab82-0440-11e9-97ba-0cc47a9bfba2
+spec:
+  clusterIP: 10.96.122.221
+  ports:
+  - port: 123
+    protocol: UDP
+    targetPort: 123
+  selector:
+    run: ntpforhimself
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

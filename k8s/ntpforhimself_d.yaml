@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "3"
+  creationTimestamp: 2018-12-20T10:16:55Z
+  generation: 3
+  labels:
+    run: ntpforhimself
+  name: ntpforhimself
+  namespace: default
+  resourceVersion: "12186783"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/ntpforhimself
+  uid: 605b80bf-0440-11e9-97ba-0cc47a9bfba2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: ntpforhimself
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: ntpforhimself
+    spec:
+      containers:
+      - image: registry-1:5000/rudecs/ntpforhimself:latest
+        imagePullPolicy: Always
+        name: ntpforhimself
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostAliases:
+      - hostnames:
+        - localhost
+        ip: 127.127.1.0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: 2018-12-20T10:16:50Z
+    lastUpdateTime: 2018-12-20T10:16:50Z
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 3
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
